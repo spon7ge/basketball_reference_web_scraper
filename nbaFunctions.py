@@ -5,13 +5,14 @@ from player import *
 
 #used the get the average of a player for the season
 def average_stat_for_season(name):
+    adv = pd.DataFrame(client.players_advanced_season_totals(season_end_year=2024))
     name = player(name,force_update=False)
     
     if name.empty:
         print(f"No data found for player: {name}")
         return None
     
-    print(f"PPG: {name['PTS'].mean().round(1)} RPG: {name['REB'].mean().round(1)} APG: {name['AST'].mean().round(1)}")
+    print(f"PPG:{name['PTS'].mean().round(1)} RPG:{name['REB'].mean().round(1)} APG:{name['AST'].mean().round(1)} FG%:{(name['FGM'].sum()/name['FGA'].sum()).round(2)}")
 
 #used to calculate the amount of times they've hit the under in most recent games
 def single_categories_stats(player_name, stat, projected_value, bet='over'):
@@ -201,3 +202,15 @@ def blks_stls(player_name,projected_value, bet='over'):
         percentage = (count / num_games * 100).round(1)
         print(f"The {bet} for BLK+STL hit {count}/{num_games} for {percentage}%")
     print(f"The {bet} for BLK+STL hit {tot_count}/{total_games_played} for {per}%")
+
+
+def over_or_under():
+    pass
+
+
+def highest_to_lowest(array):
+    #max player
+    #if player is equal max append
+    #return the array of players with highest percentage to hit 
+    #make a function that allows me to check if the over or under is better 
+    pass
